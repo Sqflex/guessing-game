@@ -1,36 +1,42 @@
 class GuessingGame {
-    constructor() {
-        this.min = 0;
-        this.max = 0;
-        this.quess=0;
-    }
 
-    setRange(min, max) {
-        this.min=min;
-        this.max=max;
-        if(min==max){
-            console.log("Equal numbers!")
-        }
-    }
+  constructor() {
+    this._minimum = 0;
+    this._maximum = 0;
+    this._guess = null;
+  }
 
-    guess() {
-        this.quess = this.min + Math.round((this.max - this.min)/2);
-        return this.quess;
+  setRange(min, max) {
+    this._minimum = min;
+    this._max = max;
+    if (min == max) {
+      console.log("Min and Max values are equial!")
     }
+    if(min > max){
+      var tmp=min;
+      min=max;
+      max=tmp;
+    }
+  }
 
-    lower() {
-        if (this.guess==this.min) {
-          throw new Error("Cheating! The Number is lower than the range!");
-        }
-        this.max = this.guess;
-      }
-  
-      greater() {
-        if (this._uess==this.min) {
-          throw new Error("Cheating! The Number is greater than the range!");
-        }
-        this.min = this.guess;
-      }
+  guess() {
+    this._guess = this._minimum + Math.round((this._max - this._minimum)/2);
+    return this._guess;
+  }
+
+  lower() {
+    if (this._guess==this._minimum) {
+      throw new Error("Cheating! The Number is lower than the range!");
+    }
+    this._max = this._guess;
+  }
+
+  greater() {
+    if (this._guess==this._minimum) {
+      throw new Error("Cheating! The Number is greater than the range!");
+    }
+    this._minimum = this._guess;
+  }
 }
 
 module.exports = GuessingGame;
